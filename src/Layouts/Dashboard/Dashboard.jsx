@@ -3,7 +3,7 @@ import Home from '../../Pages/Home/Home';
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className='max-w-[1440px] mx-auto'>
             <Home/>
         </div>
     );
