@@ -1,18 +1,72 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import UseAxiosCommon from "../../hooks/UseAxiosCommon";
 
 
 const SignUp = () => {
-  const regex='^\d{5}$';
-
+  const regex = /^\d{5}$/;
+  const axiosCommon=UseAxiosCommon();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
+  const navigate = useNavigate();
+  const [userType, setUserType] = useState('User');
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => console.log(data)
+
+ 
+  const onSubmit = (data) => {
+    setLoading(true);
+    const { name, email, phone, pin, confirm } = data;  
+    if (pin !== confirm) {
+      Swal.fire({
+        title: "Your password does not match with confirm password",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+      return;
+    }
+    if (!regex.test(pin)) {
+      Swal.fire({
+        title: "Your PIN must be 5 digits",
+        text: "Please enter a valid PIN",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWWXENQs_TyDkT-HTgLxZAu_IXfG8397ud_w&s",
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+      return;
+    }
+    
+    axiosCommon.post('/auth/register', { name, email, phone, pin, userType })
+  .then(response => {
+    Swal.fire('Success!', 'Your account has been created.', 'success');
+    navigate('/login'); // Redirect to login page or desired path
+  })
+  .catch(error => {
+    Swal.fire('Error!', error.response?.data?.message || 'Something went wrong', 'error');
+  });
+  setLoading(false);
+
+
+  
+  }
   return (
     <div>
       <section >
@@ -44,8 +98,9 @@ const SignUp = () => {
                   Select type of account
                 </h1>
 
-                <div className="mt-3 md:flex md:items-center md:-mx-2">
-                  <button className="flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none">
+                <div className="mt-3 md:flex md:items-center md:-mx-2 justify-between gap-6"> 
+                  <button onClick={() => setUserType('Agent')}
+                  className={`w-full flex justify-center items-center px-6 py-3 rounded-lg ${userType === 'Agent' ? 'bg-blue-500 text-white' : 'border border-blue-500 text-blue-500'}`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -66,7 +121,8 @@ const SignUp = () => {
                     </span>
                   </button>
 
-                  <button className="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
+                  <button  onClick={() => setUserType('User')}
+                  className={`w-full flex justify-center items-center px-6 py-3 rounded-lg ${userType === 'User' ? 'bg-blue-500 text-white' : 'border border-blue-500 text-blue-500'}`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -83,7 +139,7 @@ const SignUp = () => {
                     </svg>
 
                     <span className="mx-2">
-                      Client
+                      User
 
                       </span>
                   </button>
@@ -114,13 +170,18 @@ const SignUp = () => {
                   </label>
                   <input
                     type="number"
-                    {...register("phone", { required: true })}
+                    {...register("phone", {
+                      required: true,
+                      validate: value => /^\d{11}$/.test(value) || 'Phone number must be 11 digits'
+                    })}
                     placeholder="XXX-XX-XXXX-XXX"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                   {
                     errors.phone && (
-                      <span className="text-red-500">This field is required</span>
+                      <span className="text-red-500">
+                        Phone number must be 11 digits
+                      </span>
                     )
                   }
                 </div>
@@ -176,8 +237,10 @@ const SignUp = () => {
                   }
                 </div>
 
-                <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  <span>Sign Up </span>
+                <button disabled={loading} className={`flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50`}>
+                  <span>
+                  {loading ? 'Signing Up...' : 'Sign Up'}
+                     </span>
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

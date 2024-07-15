@@ -9,6 +9,7 @@ const Dashboard = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const isAdmin=true;
 
   return (
     <div className="h-screen  flex">
@@ -66,7 +67,9 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Dashboard</span>
+              <span className="mx-2 text-sm font-medium">
+              User Management 
+              </span>
             </Link>
 
             <Link
@@ -88,7 +91,9 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Projects</span>
+              <span className="mx-2 text-sm font-medium">
+              System Monitoring
+              </span>
             </Link>
 
             <Link
@@ -110,7 +115,9 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Tasks</span>
+              <span className="mx-2 text-sm font-medium">
+              Transaction Overview
+              </span>
             </Link>
 
             <Link
@@ -137,7 +144,9 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Reporting</span>
+              <span className="mx-2 text-sm font-medium">
+              Reports
+              </span>
             </Link>
 
             <Link
@@ -159,7 +168,9 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">Users</span>
+              <span className="mx-2 text-sm font-medium">
+               Support & Feedbacks
+              </span>
             </Link>
 
             <Link
@@ -191,14 +202,16 @@ const Dashboard = () => {
           </nav>
 
           <Link className="mt-6">
-            <Link className="p-3 bg-gray-100 rounded-lg dark:bg-gray-800">
+            <div className="p-3 bg-gray-100 rounded-lg dark:bg-gray-800">
               <h2 className="text-sm font-medium text-gray-800 dark:text-white">
-                New feature availabel!
+                New feature available!
               </h2>
 
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                harum officia eligendi velit.
+                We just launched a new feature for{" "}
+                <span className="font-medium text-gray-700 dark:text-gray-200">
+                  all our users
+                </span>
               </p>
 
               <img
@@ -206,15 +219,11 @@ const Dashboard = () => {
                 src="https://images.unsplash.com/photo-1658953229664-e8d5ebd039ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&h=1374&q=80"
                 alt=""
               />
-            </Link>
+            </div>
 
             <div className="flex items-center justify-between mt-6">
               <a href="#" className="flex items-center gap-x-2">
-                <img
-                  className="object-cover rounded-full h-7 w-7"
-                  src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80"
-                  alt="avatar"
-                />
+                
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                   John Doe
                 </span>
