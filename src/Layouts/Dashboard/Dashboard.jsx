@@ -1,12 +1,12 @@
 import React from 'react';
 import Home from '../../Pages/Home/Home';
 
-const MainLayout = () => {
+const Dashboard = () => {
     return (
-        <div className='max-w-7xl mx-auto '>
+        <div>
             <Home/>
         </div>
     );
 };
 
-export default MainLayout;
+export default Dashboard;
