@@ -10,10 +10,11 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('access-token');
         if (token) {
             const decodedUser = jwtDecode(token);
-            setUser(decodedUser);
+            setUser(decodedUser); // Make sure this accurately reflects the logged-in user
         }
         setLoading(false);
     }, []);
+    
 
     const login = async (email, pin) => {
         setLoading(true);
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout,setUser,setLoading }}>
             {children}
         </AuthContext.Provider>
     );
