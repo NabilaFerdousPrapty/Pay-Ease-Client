@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut } from '../../Utils/Auth';
+import useAuth from './../../hooks/UseAuth';
 
 
 const Logout = () => {
     const navigate = useNavigate();
-
+    const {logout}=useAuth();
     useEffect(() => {
         const handleLogout = () => {
-            LogOut(); // Call your logout function
+            logout(); // Call your logout function
             navigate('/login'); // Redirect to login after logout
         };
 

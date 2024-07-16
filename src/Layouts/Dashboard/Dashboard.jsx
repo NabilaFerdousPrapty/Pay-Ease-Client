@@ -1,42 +1,37 @@
-
 import { Link, Outlet } from "react-router-dom";
-import logo from '../../assets/images/logo (2).png'
+import logo from "../../assets/images/logo (2).png";
 import { useState } from "react";
 import { GiHamburger } from "react-icons/gi";
+import useAuth from "../../hooks/UseAuth";
 const Dashboard = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
-    
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const isAdmin=true;
-
+  const isAdmin = true;
+ const {logout}=useAuth();
   return (
     <div className="h-screen  flex">
-  
-       
-      <div className={`fixed top-0 bg-gray-950 left-0 h-full w-64  p-4 overflow-y-auto transition-transform duration-300 ease-in-out transform ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:relative md:translate-x-0`}>
-           
-        <Link to={'/'}>
-          <img
-            className="w-auto h-auto max-w-20 mx-auto "
-            src={logo}
-            alt=""
-          />
+      <div
+        className={`fixed top-0 bg-gray-950 left-0 h-full w-64  p-4 overflow-y-auto transition-transform duration-300 ease-in-out transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } md:relative md:translate-x-0`}
+      >
+        <Link to={"/"}>
+          <img className="w-auto h-auto max-w-20 mx-auto " src={logo} alt="" />
         </Link>
-        
 
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav className="flex-1 -mx-3 space-y-3 ">
-            
-             <li className="md:hidden block">
-             <button className="absolute left-1 top-1" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-          <GiHamburger className=" fill-current text-amber-400 text-lg" />
-        </button>
-             </li>
+            <li className="md:hidden block">
+              <button
+                className="absolute left-1 top-1"
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              >
+                <GiHamburger className=" fill-current text-amber-400 text-lg" />
+              </button>
+            </li>
             <Link
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               href="#"
@@ -59,7 +54,8 @@ const Dashboard = () => {
               <span className="mx-2 text-sm font-medium">Home</span>
             </Link>
 
-            <Link to={'/manage-users'}
+            <Link
+              to={"/manage-users"}
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               href="#"
             >
@@ -78,9 +74,7 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">
-              User Management 
-              </span>
+              <span className="mx-2 text-sm font-medium">User Management</span>
             </Link>
 
             <Link
@@ -102,9 +96,7 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">
-              Profile Settings
-              </span>
+              <span className="mx-2 text-sm font-medium">Profile Settings</span>
             </Link>
 
             <Link
@@ -127,7 +119,7 @@ const Dashboard = () => {
               </svg>
 
               <span className="mx-2 text-sm font-medium">
-              Transaction Overview
+                Transaction Overview
               </span>
             </Link>
 
@@ -155,15 +147,10 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <span className="mx-2 text-sm font-medium">
-              Reports
-              </span>
+              <span className="mx-2 text-sm font-medium">Reports</span>
             </Link>
 
-            <Link
-              className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-             
-            >
+            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -180,14 +167,11 @@ const Dashboard = () => {
               </svg>
 
               <span className="mx-2 text-sm font-medium">
-               Support & Feedbacks
+                Support & Feedbacks
               </span>
             </Link>
 
-            <Link
-              className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-              
-            >
+            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -234,13 +218,13 @@ const Dashboard = () => {
 
             <div className="flex items-center justify-between mt-6">
               <a href="#" className="flex items-center gap-x-2">
-                
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                   John Doe
                 </span>
               </a>
 
-              <Link to={'/logOut'}
+              <Link
+                to={"/logout"}
                 href="#"
                 className="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
               >
@@ -270,7 +254,7 @@ const Dashboard = () => {
             className="md:hidden p-2 text-gray-500 rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={toggleSidebar}
           >
-           <GiHamburger/>
+            <GiHamburger />
           </button>
 
           <Outlet />
