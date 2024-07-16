@@ -1,47 +1,48 @@
-
 import axios from "axios";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Logout from "../Pages/Logout/Logout";
 
-export const axiosSecure = axios.create({
+const axiosSecure = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-
 });
+
 const UseAxiosSecure = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axiosSecure.interceptors.request.use(function (config) {
-            // Do something before request is sent
-            const token = localStorage.getItem('access-token');
-            if (token) {
-
-                // console.log('Request sent',token);
-                config.headers.Authorization = `Bearer ${ token }`;
+        // Request interceptor to add the token
+        const requestInterceptor = axiosSecure.interceptors.request.use(
+            (config) => {
+                const token = localStorage.getItem('access-token');
+                if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
+                }
                 return config;
-            }
-        }, function (error) {
-            // Do something with request error
-            return Promise.reject(error);
-        });
+            },
+            (error) => Promise.reject(error)
+        );
 
-        //for 401 and 403 error
-        axiosSecure.interceptors.response.use(function (response) {
-            // Any status code that lie within the range of 2xx cause this function to trigger
-            // Do something with response data
-            return response;
-        }, async (error) => {
-            // Any status codes that falls outside the range of 2xx cause this function to trigger
-            // Do something with response error
-            const errorStatus = error?.response?.status;
-            if (errorStatus === 401 || errorStatus === 403) {
-                localStorage.removeItem('access-token');
-                await LogOut();
-                navigate('/login');
+        // Response interceptor for handling errors
+        const responseInterceptor = axiosSecure.interceptors.response.use(
+            (response) => response,
+            async (error) => {
+                const errorStatus = error?.response?.status;
+                if (errorStatus === 401 || errorStatus === 403) {
+                    localStorage.removeItem('access-token');
+                    await Logout();
+                    navigate('/login');
+                }
+                return Promise.reject(error);
             }
-            return Promise.reject(error);
-        });
-    }, [navigate, LogOut])
+        );
+
+        // Cleanup interceptors on unmount
+        return () => {
+            axiosSecure.interceptors.request.eject(requestInterceptor);
+            axiosSecure.interceptors.response.eject(responseInterceptor);
+        };
+    }, [navigate]);
 
     return axiosSecure;
 };

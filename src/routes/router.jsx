@@ -5,6 +5,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./Private/PrivateRoute";
 import Home from "../Pages/Home/Home";
 import UserManagement from "../Pages/Admin/UserManagement/UserManagement";
+import Logout from "../Pages/Logout/Logout";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
-  },
+  },{
+    path: "/logout",
+    element: <Logout />,
+  }
 ]);
 
 export default router;
