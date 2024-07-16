@@ -7,13 +7,19 @@ const Dashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
+    
     setIsSidebarOpen(!isSidebarOpen);
   };
   const isAdmin=true;
 
   return (
     <div className="h-screen  flex">
-      <aside className={`flex ${isSidebarOpen ? 'block':'hidden'}  flex-col w-64 h-screen px-5 py-8 overflow-y-scroll bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700`}>
+  
+       
+      <div className={`fixed top-0 bg-gray-950 left-0 h-full w-64  p-4 overflow-y-auto transition-transform duration-300 ease-in-out transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } md:relative md:translate-x-0`}>
+           
         <Link to={'/'}>
           <img
             className="w-auto h-auto max-w-20 mx-auto "
@@ -21,11 +27,16 @@ const Dashboard = () => {
             alt=""
           />
         </Link>
+        
 
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav className="flex-1 -mx-3 space-y-3 ">
             
-
+             <li className="md:hidden block">
+             <button className="absolute left-1 top-1" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          <GiHamburger className=" fill-current text-amber-400 text-lg" />
+        </button>
+             </li>
             <Link
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               href="#"
@@ -48,7 +59,7 @@ const Dashboard = () => {
               <span className="mx-2 text-sm font-medium">Home</span>
             </Link>
 
-            <Link
+            <Link to={'/manage-users'}
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               href="#"
             >
@@ -92,7 +103,7 @@ const Dashboard = () => {
               </svg>
 
               <span className="mx-2 text-sm font-medium">
-              System Monitoring
+              Profile Settings
               </span>
             </Link>
 
@@ -151,7 +162,7 @@ const Dashboard = () => {
 
             <Link
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-              href="#"
+             
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +186,7 @@ const Dashboard = () => {
 
             <Link
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-              href="#"
+              
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +262,7 @@ const Dashboard = () => {
             </div>
           </Link>
         </div>
-      </aside>
+      </div>
       <div className="flex-1">
         <div className="p-4">
           {/* Button to open/close sidebar on small screens */}
