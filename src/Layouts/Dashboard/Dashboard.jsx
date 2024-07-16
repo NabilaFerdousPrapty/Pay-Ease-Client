@@ -3,14 +3,18 @@ import logo from "../../assets/images/logo (2).png";
 import { useState } from "react";
 import { GiHamburger } from "react-icons/gi";
 import useAuth from "../../hooks/UseAuth";
+import UseRole from "../../hooks/UseRole";
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const isAdmin = true;
- const {logout}=useAuth();
+  const {user,logout}=useAuth();
+  const  [role,isLoading,refetch]=UseRole(user?.email);
+  console.log(user.email);
+  console.log(role.isAdmin);
+  console.log(role.isAgent);
   return (
     <div className="h-screen flex">
       <div
