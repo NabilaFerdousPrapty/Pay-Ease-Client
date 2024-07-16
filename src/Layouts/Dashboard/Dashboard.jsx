@@ -12,11 +12,11 @@ const Dashboard = () => {
   const isAdmin = true;
  const {logout}=useAuth();
   return (
-    <div className="h-screen  flex">
+    <div className="h-screen flex">
       <div
         className={`fixed top-0 bg-gray-950 left-0 h-full w-64  p-4 overflow-y-auto transition-transform duration-300 ease-in-out transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0`}
+        } lg:relative lg:translate-x-0`}
       >
         <Link to={"/"}>
           <img className="w-auto h-auto max-w-20 mx-auto " src={logo} alt="" />
@@ -24,7 +24,7 @@ const Dashboard = () => {
 
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav className="flex-1 -mx-3 space-y-3 ">
-            <li className="md:hidden block">
+            <li className="lg:hidden block">
               <button
                 className="absolute left-1 top-1"
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -251,7 +251,7 @@ const Dashboard = () => {
         <div className="p-4">
           {/* Button to open/close sidebar on small screens */}
           <button
-            className="md:hidden p-2 text-gray-500 rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="lg:hidden p-2 text-gray-500 rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={toggleSidebar}
           >
             <GiHamburger />

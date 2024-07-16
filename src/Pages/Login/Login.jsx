@@ -63,7 +63,7 @@ const Login = () => {
                 Pay Ease
               </h2>
               <p className="max-w-xl mt-3 text-gray-300">
-                Pay your bills with ease and convenience with Pay Ease.
+                Pay your bills with ease and convenience with Pay Ease.Here at Pay Ease, we provide you with a platform to pay your bills with ease and convenience. Pay your bills with ease and convenience with Pay Ease.Here at Pay Ease, we provide you with a platform to pay your bills with ease and convenience.
               </p>
             </div>
           </div>
