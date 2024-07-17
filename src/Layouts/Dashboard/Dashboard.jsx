@@ -605,10 +605,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex-1">
-        <div className="p-4">
+        <div className="p-4 flex flex-col justify-center items-center">
           {/* Button to open/close sidebar on small screens */}
           <button
-            className="lg:hidden p-2 text-gray-500 rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="lg:hidden text-xl p-2 text-gray-500 rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 "
             onClick={toggleSidebar}
           >
             <GiHamburger />
