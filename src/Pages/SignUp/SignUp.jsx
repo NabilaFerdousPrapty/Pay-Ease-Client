@@ -72,17 +72,17 @@ const SignUp = () => {
       <section >
         <div className="flex justify-center min-h-screen">
           <div
-            className="hidden bg-cover lg:block lg:w-2/5"
+            className="hidden bg-cover bg-center lg:block lg:w-[45%]"
            style={{
               backgroundImage:
-                "url(https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHwxNjI0MjY1MjI4&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)",
+                "url(https://i.ibb.co/TgfFzFv/representation-user-experience-interface-design-smartphone.jpg)",
               backgroundSize: "cover",
               backgroundPosition: "center center",
 
            }}
           ></div>
 
-          <div className="flex flex-col items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+          <div className="flex flex-col items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-[55%]">
             <div className="w-full">
               <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
                 Get your free account now.
