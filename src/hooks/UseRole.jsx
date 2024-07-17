@@ -30,13 +30,26 @@ const UseRole = (email) => {
             }
         },
     });
+    const { data: isUser, isPending: isUserLoading } = useQuery({
+        queryKey: ['isUser', email],
+        queryFn: async () => {
+            try {
+                const response = await axiosCommon.get(`/user/approved/${email}`);
+                return response.data ? true : false; // Check if user exists
+            } catch (error) {
+                console.error("Error fetching agent role:", error);
+                return false; // Return false in case of error
+            }
+        },
+    });
     
 
-    const isLoading = isAdminLoading || isAgentLoading;
+    const isLoading = isAdminLoading || isAgentLoading||isUserLoading;
 
     const role = {
         isAdmin: isAdmin ,
         isAgent: isAgent,
+        isUser: isUser,
         
     };
 
