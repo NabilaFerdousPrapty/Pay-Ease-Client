@@ -69,8 +69,12 @@ const CashIn = () => {
             </form>
           </div>
         </div>
-        {isLoading && <p>Loading...</p>}
+        {isLoading &&  <div className="flex items-center justify-center w-full h-96">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+          }
         {error && <p className="text-red-500">{error.message}</p>}
+
         {/* {agent.length > 0 && agent.map((agent,index) => (
           <div key={index}  className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
             <div
