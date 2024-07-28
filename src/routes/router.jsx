@@ -11,6 +11,8 @@ import CashIn from "../Pages/User/CashIn/CashIn";
 import CashOut from "../Pages/User/CashOut/CashOut";
 import SendMoney from "../Pages/User/SendMoney/SendMoney";
 import Balance from "../Pages/User/Balance/Balance";
+import CashInRequest from "../Pages/Agent/CashInRequest/CashInRequest";
+import CashOutRequest from "../Pages/Agent/CashOutRequest/CashOutRequest";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,16 @@ const router = createBrowserRouter([
       },{
         path:"/balance",
         element:<Balance/>
+      },
+      ///Agent routes
+      {
+        path:'/cashInRequest',
+        element:<CashInRequest/>
+      },{
+        path:'/cashOutRequest',
+        element:<CashOutRequest/>
       }
+
     ],
   },
   {
