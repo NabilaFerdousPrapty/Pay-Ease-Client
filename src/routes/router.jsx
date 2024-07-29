@@ -13,6 +13,7 @@ import SendMoney from "../Pages/User/SendMoney/SendMoney";
 import Balance from "../Pages/User/Balance/Balance";
 import CashInRequest from "../Pages/Agent/CashInRequest/CashInRequest";
 import CashOutRequest from "../Pages/Agent/CashOutRequest/CashOutRequest";
+import SendMoneyRequest from "../Pages/Agent/SendMoneyRequest/SendMoneyRequest";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +57,10 @@ const router = createBrowserRouter([
       },{
         path:'/cashOutRequest',
         element:<CashOutRequest/>
-      }
+      },{
+        path:'/sendMoneyRequest',
+        element:<SendMoneyRequest/>
+      },
 
     ],
   },
